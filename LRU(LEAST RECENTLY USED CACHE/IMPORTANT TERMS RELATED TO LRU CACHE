@@ -1,0 +1,103 @@
+QUESTION 1:
+WHAT IS LRU CACHE?
+ANSWER 1:
+The LRU caching scheme is to remove the least recently used frame when the cache is full and a new page is referenced which is not there in cache.
+. We use two data structures to implement an LRU Cache.
+A Least Recently Used (LRU) Cache organizes items in order of use, allowing you to quickly identify which item hasn't been used for the longest amount of time.
+
+Picture a clothes rack, where clothes are always hung up on one side. To find the least-recently used item, look at the item on the other end of the rack
+.========================================================================================================================================================================
+QUESTION 2:
+WHICH DATA STRUCTURES ARE USED IN LRU IMPLEMENTATION?
+ANSWER 2:
+DOUBLY LINKED LIST.
+HASH MAP.
+============================================================================================================================================================================
+QUESTION 3:
+WHY ARRAY CANT BE USED IN LRU IMPLEMENTATION?
+ARRAY AND VECTOR CANT BE USED IN LRU IMPLEMENTATION SINCE THEY TAKE O(N) TIME IN SHIFTING ELEMENTS AND WE NEED TO IMPLEMENT THE OPERATION IN O(1)
+SO WE DONT USE VECTOR AND ARRAYS IN LRU IMPLEMENTATION DUE TO TIME CONSTRAINTS.
+============================================================================================================================================================================
+QUESTION 4:
+WHAT ARE THE STRENGTHS OF LRU?
+ANSWER 4:
+  Strengths:
+1:Super fast accesses. LRU caches store items in order from most-recently used to least-recently used. That means both can be accessed in O(1)O(1) time.
+
+2:Super fast updates. Each time an item is accessed, updating the cache takes O(1)O(1) time
+============================================================================================================================================================================
+QUESTION 5:
+ANSWER 5:
+Weaknesses
+Space heavy. An LRU cache tracking nn items requires a linked list of length nn, and a hash map holding nn items. 
+That's O(n)O(n) space, but it's still two data structures (as opposed to one).
+=====================================================================================================================================================================
+QUESTION 6:
+Why Use A Cache?
+ANSWER 6:
+A cache is just fast storage. Reading data from a cache takes less time than reading it from something else (like a hard disk).
+=====================================================================================================================================================================
+QUESTION 7:
+WHAT IS LRU EVICTION?
+ANSWER 7:
+LRU (or Least Recently Used) is a cache eviction strategy, wherein if the cache size has reached the maximum allocated capacity, 
+the least recently accessed objects in the cache will be evicted  and the least used element will be at the end or tail of the list.
+=========================================================================================================================================================================
+QUESTION 8:
+DESCRIBE LRU CACHE IMPLEMENTATION?
+ANSWER 8:
+An LRU cache is built by combining two data structures: a doubly linked list and a hash map.
+
+We'll set up our linked list with the most-recently used item at the head of the list and the least-recently used item at the tail:
+This lets us access the LRU element in O(1)O(1) time by looking at the tail of the list.
+
+What about accessing a specific item in the cache (for example, the chocolate cake recipe)?
+
+In general, finding an item in a linked list is O(n)O(n) time, since we need to walk the whole list. But the whole point of a cache is to get quick lookups. How could we speed that up?
+
+We'll add in a hash map that maps items to linked list nodes:
+
+Doubly-linked list with a dictionary where each item contains links to both its predecessor and its successor.
+That lets us find an element in our cache's linked list in O(1)O(1) time, instead of O(n)O(n).
+===============================================================================================================================================================================
+QUESTION 9:
+WHAT IS CACHE HIT?
+ANSWER 9:
+If the item is in the hash table, then it's already in our cache—this is called a "cache hit"
+===============================================================================================================================================================================
+QUESTION 10:
+WHAT IS CACHE MISS?
+ANSWER 9:
+If the item isn't in the hash table, we have a cache miss. We need to load the item into the cache.
+==============================================================================================================================================================================
+QUESTION 11:
+DESCRIBE ACCESSING?
+ANSWER 11:
+Putting things together, here are the steps we'd run through each time an item was accessed:
+
+Look up the item in our hash map.
+
+If the item is in the hash table, then it's already in our cache—this is called a "cache hit"
+
+Use the hash table to quickly find the corresponding linked list node.
+
+Move the item's linked list node to the head of the linked list, since it's now the most recently used (so it shouldn't get evicted any time soon).
+=================================================================================================================================================================================
+QUESTION 12:
+DESCRIBE EVICTING?
+ANSWER 12:
+Is our cache full? If so, we need to evict something to make room:
+
+Grab the least-recently used cache item—it'll be at the tail of the linked list.
+
+Evict that item from the cache by removing it from the linked list and the hash map.
+
+Create a new linked list node for the item. Insert it at the head of the linked list.
+
+Add the item to our hash map, storing the newly-created linked list node as the value.
+===============================================================================================================================================================================
+
+
+
+
+
