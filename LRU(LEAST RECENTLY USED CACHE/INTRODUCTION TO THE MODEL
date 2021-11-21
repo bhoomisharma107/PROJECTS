@@ -1,0 +1,79 @@
+                                                         INTRODUCTION TO (LEAST RECENTLY USED CACHE)
+                                                         
+                                           ======================================================================
+                                           ======================================================================
+  LRU, or Least Recetly Used, is one of the Page Replacement Algorithms, in which the system manages a given amount of memory - by making decisions 
+  what pages to keep in memory, and which ones to remove when the memory is full.   
+  
+  
+  
+  We are given total possible page numbers that can be referred. We are also given cache (or memory) size (Number of page frames that cache can hold at a time).
+  The LRU caching scheme is to remove the least recently used frame when the cache is full and a new page is referenced which is not there in cache
+  
+  TO IMPLEMENT LRU WE NEED THE HELP OF THREE DATA STRUCTURES:
+  1: QUEUE(DOUBLE ENDED QUEUE):
+  2: LINKED LIST(DOUBLE LINKED LIST):
+  3: HASH MAPS
+  
+  Queue which is implemented using a doubly linked list. The maximum size of the queue will be equal to the total number of frames available (cache size).
+  The most recently used pages will be near front end and least recently pages will be near the rear end.
+A Hash with page number as key and address of the corresponding queue node as value.
+
+When a page is referenced, the required page may be in the memory.
+If it is in the memory, we need to detach the node of the list and bring it to the front of the queue. 
+If the required page is not in memory, we bring that in memory. In simple words, we add a new node to the front of the queue
+and update the corresponding node address in the hash. If the queue is full, i.e. all the frames are full, we remove a node from the rear of the queue,
+and add the new node to the front of the queue.
+
+IMPLEMENTATION  EXPLANATION:
+============================================================================================================================================================================
+                                                                       Runtime Complexity
+                                                 get (hashset): O(1) in the average case, O(n) in the worst case
+
+                                                set (hashset): Constant, O(1)
+
+deletion at head when adding a new element (linked list): Constant, O(1)
+
+search for deleting and adding to tail (linked list): O(n)
+
+Complexity: O(n)
+
+Memory Complexity
+Linear, O(n) where n is the size of cache.
+
+
+                                                                          
+                                                                          
+                                                            Solution BreakdowN
+                   =====================================================================================================
+
+
+
+
+Caching is a technique to store data in a faster storage (usually RAM) to serve future requests faster. Below are some common examples where cache is used:
+
+A processor cache is used to read data faster from main memory (RAM).
+Cache in RAM can be used to store part of disk data in RAM and serve future requests faster.
+Network responses can be cached in RAM to avoid too many network calls.
+However, cache store is usually not big enough to store the full data set. So we need to evict data from the cache whenever it becomes full. There are a number of caching algorithms to implement a cache eviction policy. LRU is very simple and a commonly used algorithm. The core concept of the LRU algorithm is to evict the oldest data from the cache to accommodate more data.
+
+To implement an LRU cache we use two data structures: a hashmap and a doubly linked list. A doubly linked list helps in maintaining the eviction order and a hashmap helps with O(1) lookup of cached keys. Here goes the algorithm for LRU cache.
+
+If the element exists in hashmap
+    move the accessed element to the tail of the linked list
+Otherwise,
+    if eviction is needed i.e. cache is already full
+        Remove the head element from doubly linked list and delete its hashmap entry
+    Add the new element at the tail of linked list and in hashmap
+Get from Cache and Return
+Note that the doubly linked list is used to keep track of the most recently accessed elements. The element at the tail of the doubly linked list is the
+most recently accessed element. All newly inserted elements (in put) go the tail of the list. Similarly, any element accessed (in get operation) goes to the tail of the list.
+
+
+
+
+
+
+
+
+
